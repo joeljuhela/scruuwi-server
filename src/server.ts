@@ -1,9 +1,7 @@
-import {Application} from "https://deno.land/x/oak@v9.0.0/mod.ts";
+import { Application } from "https://deno.land/x/oak@v9.0.0/mod.ts";
+import initDB from "./models/initDB.ts";
 
 const app = new Application();
-
-app.use((ctx) => {
-    ctx.response.body = "Hello World!";
-});
+initDB()
 
 await app.listen({port: 8000})
