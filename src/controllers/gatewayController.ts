@@ -1,5 +1,6 @@
 import addSensorEntry from "../models/addSensorEntry.ts";
 import getUnixTimestamp from "../utils/getUnixTimestamp.ts";
+import getSensorMacs from "../models/getSensorMacs.ts";
 
 export const insertData = async (ctx) => {
   console.info("Insert sensor data to db");
@@ -22,4 +23,9 @@ export const insertData = async (ctx) => {
   console.log(data);
   //             use gateway id from the username instead
   addSensorEntry("Arrakeen", body);
+};
+
+export const getSensorMacsController = async (ctx) => {
+  console.info("Getting sensor mac addresses from db");
+  ctx.response.body = getSensorMacs();
 };
