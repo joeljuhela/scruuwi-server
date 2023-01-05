@@ -1,38 +1,28 @@
 import db from "./db.ts";
 
-export default (gateway_id, data) => {
+export default (gatewayID: string, data: any) => {
   db.query(
     `
     INSERT INTO SensorEntry (
+      timestamp,
       gateway_id,
-      data_format,
       humidity,
       temperature,
       pressure,
-      acceleration_x,
-      acceleration_y,
-      acceleration_z,
-      tx_power,
-      battery,
       movement_counter,
-      measurement_sequence_number,
-      mac
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      mac,
+      other_json
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
-      gateway_id,
-      data.data_format,
+      data.timestamp,
+      gatewayID,
       data.humidity,
       data.temperature,
       data.pressure,
-      data.acceleration_x,
-      data.acceleration_y,
-      data.acceleration_z,
-      data.tx_power,
-      data.battery,
       data.movement_counter,
-      data.measurement_sequence_number,
       data.mac,
+      data.other_json,
     ],
   );
 };

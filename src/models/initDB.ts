@@ -4,25 +4,22 @@ export default () =>
   db.execute(`
   CREATE TABLE IF NOT EXISTS SensorEntry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp INTEGER,
     gateway_id TEXT,
-    data_format INTEGER,
     humidity REAL,
     temperature REAL,
     pressure REAL,
-    acceleration_x INTEGER,
-    acceleration_y INTEGER,
-    acceleration_z INTEGER,
-    tx_power INTEGER,
-    battery INTEGER,
     movement_counter INTEGER,
-    measurement_sequence_number INTEGER,
-    mac TEXT
+    mac TEXT,
+    other_json TEXT
   );
-  CREATE TABLE IF NOT EXISTS SensorName (
+  CREATE TABLE IF NOT EXISTS SensorInfo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     mac TEXT,
     name TEXT
   );
-  CREATE TABLE IF NOT EXISTS Gateways (
+  CREATE TABLE IF NOT EXISTS Gateway (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
     hashed_password TEXT
   );
