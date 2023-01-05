@@ -1,6 +1,7 @@
 import db from "./db.ts";
 
-export default () => db.execute(`
+export default () =>
+  db.execute(`
   CREATE TABLE IF NOT EXISTS SensorEntry (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     gateway_id TEXT,

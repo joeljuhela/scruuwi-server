@@ -1,7 +1,8 @@
 import db from "./db.ts";
 
 export default (gateway_id, data) => {
-  db.query(`
+  db.query(
+    `
     INSERT INTO SensorEntry (
       gateway_id,
       data_format,
@@ -17,7 +18,8 @@ export default (gateway_id, data) => {
       measurement_sequence_number,
       mac
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `, [
+    `,
+    [
       gateway_id,
       data.data_format,
       data.humidity,
@@ -31,6 +33,6 @@ export default (gateway_id, data) => {
       data.movement_counter,
       data.measurement_sequence_number,
       data.mac,
-    ]
+    ],
   );
 };
