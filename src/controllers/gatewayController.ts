@@ -1,6 +1,7 @@
 import addSensorEntry from "../models/addSensorEntry.ts";
 import getUnixTimestamp from "../utils/getUnixTimestamp.ts";
 import getSensorMacs from "../models/getSensorMacs.ts";
+import unifyMac from "../utils/unifyMac.ts";
 
 export const insertData = async (ctx) => {
   console.info("Insert sensor data to db");
@@ -20,6 +21,7 @@ export const insertData = async (ctx) => {
   };
   data.other_json = JSON.stringify(other);
   data.timestamp = getUnixTimestamp();
+  data.mac = unifyMac(data.mac);
   console.log(data);
   //             use gateway id from the username instead
   addSensorEntry("Arrakeen", body);
