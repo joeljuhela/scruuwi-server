@@ -18,9 +18,10 @@ export default () =>
     mac TEXT,
     name TEXT
   );
-  CREATE TABLE IF NOT EXISTS Gateway (
+  CREATE TABLE IF NOT EXISTS User (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
-    hashed_password TEXT
+    hashed_password TEXT,
+    is_gateway BOOLEAN
   );
 `);
