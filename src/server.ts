@@ -6,4 +6,6 @@ const app = new Application();
 app.use(router.routes());
 initDB();
 
-await app.listen({ port: 8000 });
+const port = 8000;
+console.log("Starting server on port", port);
+await app.listen({ port });
