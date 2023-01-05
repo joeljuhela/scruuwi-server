@@ -1,12 +1,16 @@
 import { Router } from "./deps/oak.ts";
 import * as gatewayController from "./controllers/gatewayController.ts";
 import * as authController from "./controllers/authController.ts";
+import authMiddleware from "./middleware/auth.ts";
 
 const router = new Router();
-
 router
-  .post("/insert-data", gatewayController.insertData)
   .post("/auth/login", authController.login)
-  .get("/get-sensor-macs", gatewayController.getSensorMacsController);
+  .post("/insert-data", authMiddleware, gatewayController.insertData)
+  .get(
+    "/get-sensor-macs",
+    authMiddleware,
+    gatewayController.getSensorMacsController,
+  );
 
 export default router;
