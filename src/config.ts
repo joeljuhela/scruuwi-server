@@ -1,3 +1,4 @@
+const envValue = Deno.env.get("DENO_ENV")
 export default {
-  env: "dev",
+  env: envValue && envValue.toLowerCase() || 'dev',
 };

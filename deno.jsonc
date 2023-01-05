@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "DENO_ENV=TEST deno test -A",
+    "run:production": "DENO_ENV=prod deno run -A src/server.ts"
+  }
+}
