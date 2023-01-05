@@ -1,4 +1,4 @@
-import { Router } from "https://deno.land/x/oak/mod.ts";
+import { Router } from "./deps/oak.ts";
 import * as gatewayController from "./controllers/gatewayController.ts";
 
 const router = new Router();
