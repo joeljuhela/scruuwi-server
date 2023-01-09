@@ -25,7 +25,7 @@ export const insertData = async (ctx) => {
   data.mac = unifyMac(data.mac);
   console.log(data);
   //             use gateway id from the username instead
-  addSensorEntry("Arrakeen", body);
+  addSensorEntry("Arrakeen", data);
 };
 
 export const getSensorMacsController = async (ctx) => {
