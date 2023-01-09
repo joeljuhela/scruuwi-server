@@ -10,4 +10,7 @@ router
 router
   .get("/get-sensor-macs", gatewayController.getSensorMacsController);
 
+router
+  .get("/get-latest-by-mac/:mac", gatewayController.getLatestByMac);
+
 export default router;

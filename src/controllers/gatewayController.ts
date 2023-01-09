@@ -1,6 +1,7 @@
 import addSensorEntry from "../models/addSensorEntry.ts";
 import getUnixTimestamp from "../utils/getUnixTimestamp.ts";
 import getSensorMacs from "../models/getSensorMacs.ts";
+import getLatest from "../models/getLatest.ts";
 import unifyMac from "../utils/unifyMac.ts";
 
 export const insertData = async (ctx) => {
@@ -30,4 +31,19 @@ export const insertData = async (ctx) => {
 export const getSensorMacsController = async (ctx) => {
   console.info("Getting sensor mac addresses from db");
   ctx.response.body = getSensorMacs();
+};
+
+export const getLatestByMac = async (ctx) => {
+  const mac = ctx.params.mac;
+  const value = getLatest(mac);
+  if (!value) {
+    console.info(`Couldn't find latest value from sensor ${mac}`);
+    ctx.response.status = 404;
+    ctx.response.body = {
+      error: `Couldn't find latest value from sensor ${mac}`,
+    };
+  } else {
+    console.info(`Found value for sensor ${mac}: ${value}`);
+    ctx.response.body = value;
+  }
 };
