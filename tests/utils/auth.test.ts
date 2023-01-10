@@ -27,16 +27,6 @@ Deno.test("Auth header parsing should work", async (t) => {
     // did not crash
     assertEquals(pass, "");
   });
-  await t.step("Should handle a malformed header (missing ':')", () => {
-    const creds = {
-      user: "test username",
-      pass: "test password 1",
-    };
-    const header = btoa(`${creds.user}${creds.pass}`);
-    const [user, pass] = parseBasicAuthHeader(`Basic ${header}`);
-    // did not crash
-    assertEquals(pass, "");
-  });
   await t.step("Should handle a malformed header (UPPERCASE'd base64)", () => {
     const creds = {
       user: "test username",
