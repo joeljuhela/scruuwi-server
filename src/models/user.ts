@@ -1,12 +1,27 @@
 import db from "./db.ts";
 import { hashPassword, verifyPassword } from "../utils/passwordHashing.ts";
 
-interface User {
+export interface User {
   id: number;
   username: string;
   is_gateway: boolean;
   hashed_password?: string;
 }
+
+export const createUser = async (user: any): Promise<User | null> => {
+  if (findSingleUser(user.username)) {
+    throw new Error(`User with username "${user.username}" already exists!`);
+    return null;
+  }
+  db.query(
+    `
+    INSERT INTO User (username, is_gateway, hashed_password)
+    VALUES (?, ?, ?);
+  `,
+    [user.username, user.is_gateway, await hashPassword(user.password)],
+  );
+  return findSingleUser(user.username);
+};
 
 /**
  * Returns a single user based on username alone
