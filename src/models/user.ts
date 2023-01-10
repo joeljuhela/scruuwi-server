@@ -1,5 +1,5 @@
 import db from "./db.ts";
-import { bcrypt } from "../deps/bcrypt.ts";
+import { hashPassword, verifyPassword } from "../utils/passwordHashing.ts";
 
 interface User {
   id: number;
@@ -52,10 +52,7 @@ export const checkPassword = async (
   const user_with_hash: User | null = findSingleUser(username, true);
 
   if (user_with_hash) {
-    console.log(
-      await bcrypt.compare(password, user_with_hash.hashed_password as string),
-    );
-    return await bcrypt.compare(
+    return await verifyPassword(
       password,
       user_with_hash.hashed_password as string,
     );
