@@ -13,6 +13,7 @@ import {
   User,
 } from "../../src/models/user.ts";
 
+
 Deno.test("The user model tests", async (t) => {
   await t.step("Test that `DENO_ENV` is `TEST`", () => testEnvOrExit());
   await t.step(
